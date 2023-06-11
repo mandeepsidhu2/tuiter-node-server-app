@@ -11,7 +11,7 @@ import AuthController from "./users/auth-controller.js";
 const app = express()
 app.use( cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://64851059bf187a3789276a65--cheery-speculoos-b3e88c.netlify.app",
   })
  )
 app.use(express.json());
