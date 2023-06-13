@@ -8,22 +8,22 @@ const AuthController = (app) => {
     app.post("/api/users/logout",   logout);
     app.put ("/api/users",          update);
 }
-    const register = (req, res) => {
+    const register = async (req, res) => {
         const username = req.body.username;
-        const user = usersDao.findUserByUsername(username);
+        const user = await usersDao.findUserByUsername(username);
         if (user) {
           res.sendStatus(409);
           return;
         }
-        const newUser = usersDao.createUser(req.body);
+        const newUser = await usersDao.createUser(req.body);
         req.session["currentUser"] = newUser;
         res.json(newUser);
       };
      
-      const login = (req, res) => {
+      const login =async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
-        const user = usersDao.findUserByCredentials(username, password);
+        const user = await usersDao.findUserByCredentials(username, password);
     
         if (user) {
           req.session["currentUser"] = user;
@@ -48,9 +48,13 @@ const AuthController = (app) => {
         res.sendStatus(200);
       };
      
-    const update   = (req, res) => {
+    const update   = async (req, res) => {
 
-      usersDao.updateUser(req.body._id, req.body)
+    //  usersDao.updateUser(req.body._id, req.body)
+      const id=req.body._id
+      const status = await usersDao.updateUser(id, req.body);
+      const user = await usersDao.findUserById(id);
+      req.session["currentUser"] = user;
       res.sendStatus(200);
       };
 

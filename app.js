@@ -6,14 +6,16 @@ import express from 'express';
 import cors from 'cors'
 import session from "express-session";
 import AuthController from "./users/auth-controller.js";
+import mongoose from "mongoose";
 
-
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb+srv://mandeepsidhu0722:secretpass@cluster0.b9cswsc.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING);
 const app = express()
 app.use( cors({
     credentials: true,
-    origin: "https://cheery-speculoos-b3e88c.netlify.app",
+    origin: "http://localhost:3000",
   
-  })
+  }) 
  )
 app.use(express.json());
 app.use( session({
