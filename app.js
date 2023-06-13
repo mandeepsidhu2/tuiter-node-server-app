@@ -12,6 +12,7 @@ const app = express()
 app.use( cors({
     credentials: true,
     origin: "https://cheery-speculoos-b3e88c.netlify.app",
+  
   })
  )
 app.use(express.json());
@@ -26,7 +27,7 @@ HelloController(app)
 AuthController(app)
 UserController(app)
 
-app.listen(process.env.PORT ||4000)
+app.listen(process.env.PORT||4000)
 
 
 

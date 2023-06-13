@@ -8,8 +8,11 @@ const createTuit = (req, res) => {
     newTuit.likes = 0;
     newTuit.liked = false;
     newTuit.dislikes=0
+    newTuit.disliked=false
     newTuit.replies=0
     newTuit.retuits=0
+    newTuit.handle="@nasa"
+    newTuit.image="https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg"
     tuits.push(newTuit);
    
     res.json(newTuit);
