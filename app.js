@@ -18,12 +18,19 @@ app.use( cors({
   }) 
  )
 app.use(express.json());
-app.use( session({
-    secret: "any string",
-    resave: false,
-    saveUninitialized: true,
-  })
- )
+
+app.use(
+  session({
+  secret: "any string",
+  resave: false,
+  proxy: true,
+  saveUninitialized: false,
+  cookie: {
+  },
+  sameSite: "none",
+  secure: true,
+}));
+  
 TuitsController(app);
 HelloController(app)
 AuthController(app)
