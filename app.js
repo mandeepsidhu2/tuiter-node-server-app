@@ -23,10 +23,13 @@ app.use(
   session({
     secret: "any string",
     resave: false,
-    saveUninitialized: true,
-  })
+    saveUninitialized: false,
+    proxy: true,
+    cookie: {
+      sameSite  : 'none',
+      secure    : true
+  }})
  );
- 
   
 TuitsController(app);
 HelloController(app)
