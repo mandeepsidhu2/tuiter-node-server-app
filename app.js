@@ -21,15 +21,12 @@ app.use(express.json());
 
 app.use(
   session({
-  secret: "any string",
-  resave: false,
-  proxy: true,
-  saveUninitialized: false,
-  cookie: {
-  },
-  sameSite: "none",
-  secure: true,
-}));
+    secret: "any string",
+    resave: false,
+    saveUninitialized: true,
+  })
+ );
+ 
   
 TuitsController(app);
 HelloController(app)
